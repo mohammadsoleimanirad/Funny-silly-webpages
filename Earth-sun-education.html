@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sun and Planet Animation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Responsive warning text */
+        .warning-text {
+            position: relative;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 4.5vw;
+            text-align: center;
+            padding: 3vh 6vw;
+            margin: 3vh 0;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 12px;
+            animation: blink 1.5s infinite;
+            z-index: 3;
+        }
+
+        /* Color styling for specific words */
+        .yellow-text { color: #FFD700; text-shadow: 0 0 8px #FFD700; }
+        .blue-text { color: #87CEFA; text-shadow: 0 0 8px #87CEFA; }
+
+        /* Responsive orbit container */
+        .orbit-container {
+            position: relative;
+            width: 70vmin;
+            height: 70vmin;
+            margin: 4vh auto;
+            padding-bottom: 10vh; /* Prevents bottom overflow */
+        }
+
+        .sun {
+            width: 12vmin;
+            height: 12vmin;
+            background-color: #FFD700;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+            z-index: 1;
+        }
+
+        .planet {
+            width: 2.5vmin;
+            height: 2.5vmin;
+            background-color: #87CEFA;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: orbit 4s linear infinite;
+            z-index: 2;
+        }
+
+        @keyframes orbit {
+            from {
+                transform: translate(-50%, -50%) 
+                           rotate(0deg) 
+                           translateX(calc(35vmin - 1.25vmin)) 
+                           rotate(0deg);
+            }
+            to {
+                transform: translate(-50%, -50%) 
+                           rotate(360deg) 
+                           translateX(calc(35vmin - 1.25vmin)) 
+                           rotate(-360deg);
+            }
+        }
+
+        @keyframes blink {
+            50% { opacity: 0.7; }
+        }
+
+        /* Mobile-specific adjustments */
+        @media (max-width: 600px) {
+            .warning-text {
+                font-size: 5.5vw;
+                padding: 4vh 8vw;
+                margin-top: 6vh;
+            }
+            
+            .orbit-container {
+                width: 80vmin;
+                height: 80vmin;
+                margin-top: 8vh;
+                padding-bottom: 15vh;
+            }
+            
+            .sun {
+                width: 14vmin;
+                height: 14vmin;
+            }
+            
+            .planet {
+                width: 3vmin;
+                height: 3vmin;
+            }
+        }
+        
+        /* Vertical screen protection */
+        @media (max-height: 600px) {
+            .orbit-container {
+                width: 60vmin;
+                height: 60vmin;
+                margin-top: 5vh;
+            }
+            
+            .warning-text {
+                font-size: 4vw;
+                padding: 2vh 4vw;
+                margin: 2vh 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Responsive warning message -->
+    <div class="warning-text">
+        You're on the <span class="blue-text">blue</span> dot!<br>
+        Avoid the <span class="yellow-text">yellow</span> one - it's hotter than your ex's temper! 🔥
+    </div>
+
+    <div class="orbit-container">
+        <div class="sun"></div>
+        <div class="planet"></div>
+    </div>
+</body>
+</html>
